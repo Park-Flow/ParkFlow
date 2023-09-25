@@ -1,10 +1,11 @@
 import { GlobalStyles } from "./contexts/globalStyles.jsx";
+import Login from "./pages/Login";
 function App() {
   
   return (
     <>
       <GlobalStyles />
-      <h1>AAAAAAAAAAAAAAAAAAAAA</h1>
+      <Login />
     </>
   );
   

@@ -2,6 +2,8 @@ import { createGlobalStyle } from "styled-components";
 
 
 export const GlobalStyles = createGlobalStyle`
+@import url('https://fonts.googleapis.com/css2?family=Yantramanav:wght@300;400;700&display=swap');
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -27,11 +29,21 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
+*{
+	box-sizing: border-box;
+}
 body {
-	line-height: 1;
+  line-height: 1;
+  font-family: 'Yantramanav', sans-serif;
   background-color: #11111F;
   color: #FAFAFA;
   transition: all 0.50s linear;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content:center;
 }
 ol, ul {
 	list-style: none;
