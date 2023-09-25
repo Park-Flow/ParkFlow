@@ -1,13 +1,16 @@
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 import park_flow_logo from "../../assets/images/park_flow_logo.png";
 import EmailIcon from "@mui/icons-material/Email";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+
 import * as S from "./styled";
 import Input from "../../components/Input";
 
 export default function Login() {
+  const navigate = useNavigate();
+
   const [values, setValues] = useState({
     email: "",
     password: "",
@@ -74,7 +77,7 @@ export default function Login() {
           Login
         </S.Button>
       </form>
-      <S.Link>First time? Create an account!</S.Link>
+      <S.Link onClick={() => navigate("/signup")}>First time? Create an account!</S.Link>
     </S.Container>
   );
 }
