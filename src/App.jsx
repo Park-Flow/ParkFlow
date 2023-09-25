@@ -1,11 +1,11 @@
 import { GlobalStyles } from "./contexts/globalStyles.jsx";
-import SignIn from "./components/SignIn/index.jsx";
+import Login from "./pages/Login";
 function App() {
   
   return (
     <>
       <GlobalStyles />
-      <SignIn />
+      <Login />
     </>
   );
   
