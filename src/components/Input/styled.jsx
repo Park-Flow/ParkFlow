@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const InputControl = styled.div`
   transition: all 0.3s ease;
@@ -13,11 +13,11 @@ export const InputControl = styled.div`
   margin-bottom: 40px;
   span {
     position: absolute;
-    left: 0px;
-    top: 0;
-    line-height: 50px;
+    left: 0.3125rem;
+    top: -0.3125rem;
+    line-height: 3.125rem;
     pointer-events: none;
-    font-size: 16px;
+    font-size: 0.8rem;
     color: #fff;
     transition: all 0.3s ease;
   }
@@ -37,7 +37,7 @@ export const InputControl = styled.div`
     }
     &:focus {
       outline: none;
-      border-bottom: 2px solid #cd5008;
+      border-bottom: 2px solid #3c78ee;
     }
     &:focus ~ span,
     &:valid ~ span,
@@ -56,22 +56,21 @@ export const InputControl = styled.div`
     height: auto;
     /*caso tenha um onClick no svg, o cursor fica como pointer*/
     &:hover {
-      cursor: ${(props) => (props.hireable ? "pointer" : "default")};
-      background-color: ${(props) => (props.hireable ? "#cd5008" : "none")};
-      border-radius: ${(props) => (props.hireable ? "50%" : "none")};
-      
+      cursor: ${props => (props.$hireable ? 'pointer' : 'default')};
+      background-color: ${props => (props.$hireable ? '#1d1f2e' : 'none')};
+      border-radius: ${props => (props.$hireable ? '50%' : 'none')};
     }
   }
   @media (max-height: 600px) {
     input {
       font-size: 0.7rem;
       &:focus ~ span,
-    &:valid ~ span,
-    &:not(:placeholder-shown) ~ span {
-      transform: translateY(-30px);
-      font-size: 0.65rem;
-      color: #fff;
-    }
+      &:valid ~ span,
+      &:not(:placeholder-shown) ~ span {
+        transform: translateY(-30px);
+        font-size: 0.65rem;
+        color: #fff;
+      }
     }
     span {
       font-size: 0.7rem;
@@ -83,20 +82,24 @@ export const InputControl = styled.div`
       font-size: 0.6rem;
       height: 2rem;
       &:focus ~ span,
-    &:valid ~ span,
-    &:not(:placeholder-shown) ~ span {
-      transform: translateY(-20px);
-      font-size: 0.5rem;
-      color: #fff;
-    }
+      &:valid ~ span,
+      &:not(:placeholder-shown) ~ span {
+        transform: translateY(-20px);
+        font-size: 0.5rem;
+        color: #fff;
+      }
     }
     span {
       font-size: 0.6rem;
       top: -0.5rem;
-
     }
     svg {
-      width: /*unidade de medida responsiva*/ 1.8rem;
+      width: 1.8rem;
     }
   }
+  @media (min-width: 820px) {
+   
+    input{
+      width: 25rem;
+    }
 `;

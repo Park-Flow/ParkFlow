@@ -1,27 +1,28 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import EmailIcon from "@mui/icons-material/Email";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import BadgeIcon from "@mui/icons-material/Badge";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import EmailIcon from '@mui/icons-material/Email';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import BadgeIcon from '@mui/icons-material/Badge';
 
-import park_flow_logo from "../../assets/images/park_flow_logo.png";
-import * as S from "./styled";
-import Input from "../../components/Input";
+import park_flow_logo from '../../assets/images/park_flow_logo.png';
+import * as S from './styled';
+import Input from '../../components/Input';
 
 export default function SignUp() {
   const navigate = useNavigate();
   const [values, setValues] = useState({
-    email: "",
-    password: "",
-    confirmPassword: "",
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
     showPassword: false,
     showConfirmPassword: false,
   });
 
-  const REGEX_EMAIL = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i;
+  const REGEX_EMAIL = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+$/i;
 
-  const handleChange = (prop) => (event) => {
+  const handleChange = prop => event => {
     setValues({ ...values, [prop]: event.target.value });
   };
 
@@ -31,44 +32,43 @@ export default function SignUp() {
 
   const handleClickShowConfirmPassword = () => {
     setValues({ ...values, showConfirmPassword: !values.showConfirmPassword });
-  }
+  };
 
-  const handleMouseDownPassword = (event) => {
+  const handleMouseDownPassword = event => {
     event.preventDefault();
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = event => {
     event.preventDefault();
   };
-
   return (
     <S.Container>
       <form onSubmit={handleSubmit}>
         <img src={park_flow_logo} alt="Park Flow Logo" />
         <Input
-          type={"text"}
+          type={'text'}
           value={values.name}
-          handleChange={handleChange("name")}
+          handleChange={handleChange('name')}
           hireable={false}
-          typeSpan={"Name"}
+          typeSpan={'Name'}
         >
-            <BadgeIcon />
+          <BadgeIcon />
         </Input>
         <Input
-          type={"email"}
+          type={'email'}
           value={values.email}
-          handleChange={handleChange("email")}
+          handleChange={handleChange('email')}
           hireable={false}
-          typeSpan={"Email"}
+          typeSpan={'Email'}
         >
           <EmailIcon />
         </Input>
         <Input
-          type={values.showPassword ? "text" : "password"}
+          type={values.showPassword ? 'text' : 'password'}
           value={values.password}
-          handleChange={handleChange("password")}
+          handleChange={handleChange('password')}
           hireable={true}
-          typeSpan={"Password"}
+          typeSpan={'Password'}
         >
           {values.showPassword ? (
             <VisibilityOff
@@ -83,36 +83,39 @@ export default function SignUp() {
           )}
         </Input>
         <Input
-            type={values.showConfirmPassword ? "text" : "password"}
-            value={values.confirmPassword}
-            handleChange={handleChange("confirmPassword")}
-            hireable={true}
-            typeSpan={"Confirm Password"}
-            >
-            {values.showConfirmPassword ? (
-                <VisibilityOff
-                    onClick={handleClickShowConfirmPassword}
-                    onMouseDown={handleMouseDownPassword}
-                />
-            ) : (
-                <Visibility
-                    onClick={handleClickShowConfirmPassword}
-                    onMouseDown={handleMouseDownPassword}
-                />
-            )}
+          type={values.showConfirmPassword ? 'text' : 'password'}
+          value={values.confirmPassword}
+          handleChange={handleChange('confirmPassword')}
+          hireable={true}
+          typeSpan={'Confirm Password'}
+        >
+          {values.showConfirmPassword ? (
+            <VisibilityOff
+              onClick={handleClickShowConfirmPassword}
+              onMouseDown={handleMouseDownPassword}
+            />
+          ) : (
+            <Visibility
+              onClick={handleClickShowConfirmPassword}
+              onMouseDown={handleMouseDownPassword}
+            />
+          )}
         </Input>
-
 
         <S.Button
           type="submit"
           disabled={
-            REGEX_EMAIL.test(values.email) || values.password.length <= 6 || values.password !== values.confirmPassword
+            values.password !== values.confirmPassword ||
+            values.name.length < 3 ||
+            !REGEX_EMAIL.test(values.email)
           }
         >
-          SignUp
+          Create Account
         </S.Button>
       </form>
-      <S.Link onClick={() => navigate("/")}>Already is registered? Sign In!</S.Link>
+      <S.Link onClick={() => navigate('/')}>
+        Already is registered? Sign In!
+      </S.Link>
     </S.Container>
   );
 }

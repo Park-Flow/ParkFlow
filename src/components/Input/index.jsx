@@ -1,4 +1,4 @@
-import * as S from "./styled";
+import * as S from './styled';
 import PropTypes from 'prop-types';
 
 export default function Input({
@@ -10,7 +10,7 @@ export default function Input({
   typeSpan,
 }) {
   return (
-    <S.InputControl hireable={hireable}>
+    <S.InputControl $hireable={hireable}>
       <input
         type={type}
         autoComplete="off"
