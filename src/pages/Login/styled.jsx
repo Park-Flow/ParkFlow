@@ -11,6 +11,10 @@ export const Container = styled.div`
   transition: all 0.3s ease;
 
   form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     img {
       width: 20rem;
       height: auto;
@@ -41,21 +45,15 @@ export const Container = styled.div`
         background-color: #fff;
       }
     }
-    .signup-web{
+    .signup-web {
       width: 62%;
       display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
-      font-size:1rem;
+      font-size: 1rem;
       font-weight: 400;
-
-
     }
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
   }
   @media (max-height: 440px) {
     form {
@@ -83,20 +81,20 @@ export const Button = styled.button`
   height: 3rem;
   border: none;
   border-radius: 10px;
-  background-color: #1D1F2E;
+  background-color: #1d1f2e;
   color: #fff;
   font-size: 1rem;
   transition: all 0.3s ease;
 
-  &.signup{
+  &.signup {
     background-color: #3c78ee;
     color: #fff;
     &:enabled:hover {
-    background-color: #fff;
-    color: #3c78ee;
-    cursor: pointer;
-    transform: scale(1.01);
-  }
+      background-color: #fff;
+      color: #3c78ee;
+      cursor: pointer;
+      transform: scale(1.01);
+    }
   }
 
   &:disabled {

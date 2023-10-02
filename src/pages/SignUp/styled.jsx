@@ -12,14 +12,52 @@ export const Container = styled.div`
 
   form {
     transition: all 0.3s ease;
-    img {
-      width: 20rem;
-      height: auto;
-    }
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    img {
+      width: 20rem;
+      height: auto;
+    }
+    .text-desktop {
+      border-left: 3.5px solid #fff;
+      margin-left: -9rem;
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+      height: 2.2rem;
+      display: flex;
+      align-items: center;
+      padding-left: 0.3rem;
+      
+      
+    }
+    .divider {
+      margin-top: 2.5rem;
+      margin-bottom: -5rem;
+      margin-left: 0.5rem;
+      width: 62%;
+      height: 0.5rem;
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .line {
+        width: 40%;
+        height: 2px;
+        background-color: #fff;
+      }
+    }
+    .signup-web {
+      margin-top: -1rem;
+      width: 62%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 1rem;
+      font-weight: 400;
+    }
   }
 
   @media (max-height: 590px) {
@@ -33,17 +71,39 @@ export const Container = styled.div`
       }
     }
   }
+  @media (min-width: 820px) {
+    margin: auto;
+    height: 88vh;
+    form {
+      height: 78vh;
+      width: 40vw;
+      margin-top: -2rem;
+      background-color: #11111f;
+    }
+  }
 `;
 
 export const Button = styled.button`
-  width:  /*unidade de medida responsiva*/ 50%;
+  width: 50%;
   height: 3rem;
   border: none;
   border-radius: 10px;
-  background-color: #cd5008;
+  background-color: #1d1f2e;
   color: #fff;
   font-size: 1rem;
   transition: all 0.3s ease;
+  margin-top: 0.5rem;
+
+  &.signup {
+    background-color: #3c78ee;
+    color: #fff;
+    &:enabled:hover {
+      background-color: #fff;
+      color: #3c78ee;
+      cursor: pointer;
+      transform: scale(1.01);
+    }
+  }
 
   &:disabled {
     background-color: #01111100;
@@ -53,9 +113,9 @@ export const Button = styled.button`
 
   &:enabled:hover {
     background-color: #fff;
-    color: #cd5008;
+    color: #1d1f2e;
     cursor: pointer;
-    transform: scale(1.05);
+    transform: scale(1.01);
   }
   &:enabled:focus {
     outline: none;
@@ -66,15 +126,23 @@ export const Button = styled.button`
     transform: scale(0.95);
   }
 
-  @media (max-height: 600px) {
-    width:  /*unidade de medida responsiva*/ 30%;
+  @media (max-height: 440px) {
+    width: 30%;
     height: 2rem;
     font-size: 0.7rem;
   }
-  @media (max-height: 440px) {
-    width:  /*unidade de medida responsiva*/ 25%;
+  @media (max-height: 600px) {
+    width: 30%;
     height: 2rem;
     font-size: 0.7rem;
+  }
+  @media (min-width: 820px) {
+    font-weight: 400;
+    width: 40%;
+    height: 2.5rem;
+    font-size: 1rem;
+    border-radius: 0;
+    background-color: #1d1f2e;
   }
 `;
 
