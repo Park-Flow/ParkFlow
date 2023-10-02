@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
   width: 100vw;
@@ -13,24 +13,23 @@ export const Container = styled.div`
   form {
     transition: all 0.3s ease;
     img {
-    width: 20rem;
-    height: auto;
-  }
+      width: 20rem;
+      height: auto;
+    }
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
   }
 
-  @media(max-height: 590px) {
-    heihgt: auto;
+  @media (max-height: 590px) {
+    margin-top: -15vh;
     form {
       height: 100vh;
       img {
         width: 10rem;
         height: auto;
         margin-top: 2rem;
-
       }
     }
   }
@@ -48,7 +47,7 @@ export const Button = styled.button`
 
   &:disabled {
     background-color: #01111100;
-    color: #0FFFFF00;
+    color: #0fffff00;
     cursor: not-allowed;
   }
 
@@ -60,7 +59,7 @@ export const Button = styled.button`
   }
   &:enabled:focus {
     outline: none;
-    transform: scale(1.0);
+    transform: scale(1);
   }
 
   &:enabled:active {
@@ -69,6 +68,11 @@ export const Button = styled.button`
 
   @media (max-height: 600px) {
     width:  /*unidade de medida responsiva*/ 30%;
+    height: 2rem;
+    font-size: 0.7rem;
+  }
+  @media (max-height: 440px) {
+    width:  /*unidade de medida responsiva*/ 25%;
     height: 2rem;
     font-size: 0.7rem;
   }

@@ -1,25 +1,27 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import park_flow_logo from "../../assets/images/park_flow_logo.png";
-import EmailIcon from "@mui/icons-material/Email";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import park_flow_logo from '../../assets/images/park_flow_logo.png';
+import EmailIcon from '@mui/icons-material/Email';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
-import * as S from "./styled";
-import Input from "../../components/Input";
+import * as S from './styled';
+import Input from '../../components/Input';
 
 export default function Login() {
   const navigate = useNavigate();
 
   const [values, setValues] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
     showPassword: false,
   });
 
-  const REGEX_EMAIL = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i;
+  const isdesktop = window.innerWidth > 820;
 
-  const handleChange = (prop) => (event) => {
+  const REGEX_EMAIL = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+$/i;
+
+  const handleChange = prop => event => {
     setValues({ ...values, [prop]: event.target.value });
   };
 
@@ -27,33 +29,39 @@ export default function Login() {
     setValues({ ...values, showPassword: !values.showPassword });
   };
 
-  const handleMouseDownPassword = (event) => {
+  const handleMouseDownPassword = event => {
     event.preventDefault();
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = event => {
     event.preventDefault();
   };
 
   return (
     <S.Container>
       <form onSubmit={handleSubmit}>
-        <img src={park_flow_logo} alt="Park Flow Logo" />
+        {!isdesktop ? (
+          <img src={park_flow_logo} alt="Park Flow Logo" />
+        ) : (
+          <span className="text-desktop">
+            Sign in with an registerd account
+          </span>
+        )}
         <Input
-          type={"email"}
+          type={'email'}
           value={values.email}
-          handleChange={handleChange("email")}
+          handleChange={handleChange('email')}
           hireable={false}
-          typeSpan={"Email"}
+          typeSpan={'Email'}
         >
           <EmailIcon />
         </Input>
         <Input
-          type={values.showPassword ? "text" : "password"}
+          type={values.showPassword ? 'text' : 'password'}
           value={values.password}
-          handleChange={handleChange("password")}
+          handleChange={handleChange('password')}
           hireable={true}
-          typeSpan={"Password"}
+          typeSpan={'Password'}
         >
           {values.showPassword ? (
             <VisibilityOff
@@ -71,13 +79,33 @@ export default function Login() {
         <S.Button
           type="submit"
           disabled={
-            REGEX_EMAIL.test(values.email) || values.password.length <= 6
+            !REGEX_EMAIL.test(values.email) || values.password.length <= 6
           }
         >
           Login
         </S.Button>
+        {isdesktop ? (
+          <div className="divider">
+            <div className="line"></div>
+            <span>or</span>
+            <div className="line"></div>
+          </div>
+        ) : (
+          <> </>
+        )}
+        {!isdesktop ? (
+          <S.Link onClick={() => navigate('/signup')}>
+            First time? Create an account!
+          </S.Link>
+        ) : (
+          <div className="signup-web">
+            <span> First time? </span>
+            <S.Button className="signup" onClick={() => navigate('/signup')}>
+              Sign up
+            </S.Button>
+          </div>
+        )}
       </form>
-      <S.Link onClick={() => navigate("/signup")}>First time? Create an account!</S.Link>
     </S.Container>
   );
 }
