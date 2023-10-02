@@ -13,13 +13,26 @@ export const Container = styled.div`
   form {
     transition: all 0.3s ease;
     img {
-    width: 25rem;
+    width: 20rem;
     height: auto;
   }
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+  }
+
+  @media(max-height: 590px) {
+    heihgt: auto;
+    form {
+      height: 100vh;
+      img {
+        width: 10rem;
+        height: auto;
+        margin-top: 2rem;
+
+      }
+    }
   }
 `;
 
@@ -53,6 +66,12 @@ export const Button = styled.button`
   &:enabled:active {
     transform: scale(0.95);
   }
+
+  @media (max-height: 600px) {
+    width:  /*unidade de medida responsiva*/ 30%;
+    height: 2rem;
+    font-size: 0.7rem;
+  }
 `;
 
 export const Link = styled.a`
@@ -65,5 +84,9 @@ export const Link = styled.a`
   &:hover {
     color: #fff;
     cursor: pointer;
+  }
+
+  @media (max-height: 600px) {
+    font-size: 0.7rem;
   }
 `;
