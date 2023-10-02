@@ -1,6 +1,5 @@
 import { createGlobalStyle } from "styled-components";
 
-
 export const GlobalStyles = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Yantramanav:wght@300;400;700&display=swap');
 
@@ -31,6 +30,8 @@ footer, header, hgroup, menu, nav, section {
 }
 *{
 	box-sizing: border-box;
+	margin: 0;
+  padding: 0;
 }
 body {
   line-height: 1;

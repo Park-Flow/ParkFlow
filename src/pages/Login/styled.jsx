@@ -11,13 +11,23 @@ export const Container = styled.div`
 
   form {
     img {
-    width: 25rem;
+    width: 20rem;
     height: auto;
   }
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+  }
+  @media(max-height: 440px) {
+    form {
+      img {
+        width: 30vw;
+        height: auto;
+        margin-top: 2rem;
+
+      }
+    }
   }
 `;
 
@@ -51,6 +61,12 @@ export const Button = styled.button`
   &:enabled:active {
     transform: scale(0.95);
   }
+
+  @media (max-height: 440px) {
+    width:  /*unidade de medida responsiva*/ 30%;
+    height: 2rem;
+    font-size: 0.7rem;
+  }
 `;
 
 export const Link = styled.a`
@@ -63,5 +79,9 @@ export const Link = styled.a`
   &:hover {
     color: #fff;
     cursor: pointer;
+  }
+
+  @media (max-height: 440px) {
+    font-size: 0.7rem;
   }
 `;

@@ -22,11 +22,11 @@ export const InputControl = styled.div`
     transition: all 0.3s ease;
   }
   input {
-    width: 300px;
-    height: 50px;
+    width: 18.75rem;
+    height: 3.125rem;
     border: none;
-    padding-left: 10px;
-    font-size: 16px;
+    padding-left: 0.625rem;
+    font-size: 1rem;
     background-color: #1111110f;
     color: #fff;
     border-bottom: 2px solid #fff;
@@ -60,6 +60,43 @@ export const InputControl = styled.div`
       background-color: ${(props) => (props.hireable ? "#cd5008" : "none")};
       border-radius: ${(props) => (props.hireable ? "50%" : "none")};
       
+    }
+  }
+  @media (max-height: 600px) {
+    input {
+      font-size: 0.7rem;
+      &:focus ~ span,
+    &:valid ~ span,
+    &:not(:placeholder-shown) ~ span {
+      transform: translateY(-30px);
+      font-size: 0.65rem;
+      color: #fff;
+    }
+    }
+    span {
+      font-size: 0.7rem;
+    }
+  }
+  @media (max-height: 440px) {
+    margin-bottom: 20px;
+    input {
+      font-size: 0.6rem;
+      height: 2rem;
+      &:focus ~ span,
+    &:valid ~ span,
+    &:not(:placeholder-shown) ~ span {
+      transform: translateY(-20px);
+      font-size: 0.5rem;
+      color: #fff;
+    }
+    }
+    span {
+      font-size: 0.6rem;
+      top: -0.5rem;
+
+    }
+    svg {
+      width: /*unidade de medida responsiva*/ 1.8rem;
     }
   }
 `;
