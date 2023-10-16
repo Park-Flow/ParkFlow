@@ -1,9 +1,14 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import AlertContext from '../../contexts/AlertContext';
+import UserContext from '../../contexts/UserContext';
+import useSignup from '../../hooks/api/useSignup';
 import EmailIcon from '@mui/icons-material/Email';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import BadgeIcon from '@mui/icons-material/Badge';
+import CustomizedSnackbars from '../../components/Alerts/index.jsx';
 
 import park_flow_logo from '../../assets/images/park_flow_logo.png';
 import * as S from './styled';
@@ -11,6 +16,10 @@ import Input from '../../components/Input';
 
 export default function SignUp() {
   const navigate = useNavigate();
+  const { signUp } = useSignup();
+  const { setUserData } = useContext(UserContext);
+  const { open, setOpen, message, setMessage, severity, setSeverity } =
+    useContext(AlertContext);
   const isdesktop = window.innerWidth > 820;
   const [values, setValues] = useState({
     name: '',
@@ -39,9 +48,24 @@ export default function SignUp() {
     event.preventDefault();
   };
 
-  const handleSubmit = event => {
+  const handleSubmit = async event => {
     event.preventDefault();
+    try {
+      const userData = await signUp(values.name, values.email, values.password, values.confirmPassword);
+      setUserData(userData);
+      setMessage('User created successfully!');
+      setSeverity('success');
+      navigate('/');
+    } catch (err) {
+      if (err.response.status === 401) setMessage('Invalid email or password');
+      else if (err.response.status === 409) setMessage('Email is already registered in another account');
+      else setMessage('internal error');
+      setSeverity('error');
+    } finally {
+      setOpen(true);
+    }
   };
+
   return (
     <S.Container>
       <form onSubmit={handleSubmit}>
@@ -142,6 +166,14 @@ export default function SignUp() {
           </div>
         )}
       </form>
+      {open ? (
+        <CustomizedSnackbars
+          open={open}
+          setOpen={setOpen}
+          message={message}
+          severity={severity}
+        />
+      ) : null}
     </S.Container>
   );
 }

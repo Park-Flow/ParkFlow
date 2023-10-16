@@ -2,16 +2,16 @@ import useAsync from '../useAsync';
 
 import * as authApi from './../../services/authApi';
 
-export default function useSignin() {
+export default function useSignup() {
   const {
-    loading: signInLoading,
-    error: signInError,
-    act: signIn,
-  } = useAsync(authApi.signIn, false);
+    loading: signUpLoading,
+    error: signUpError,
+    act: signUp,
+  } = useAsync(authApi.signUp, false);
 
   return {
-    signInLoading,
-    signInError,
-    signIn,
+    signUpLoading,
+    signUpError,
+    signUp,
   };
 }
