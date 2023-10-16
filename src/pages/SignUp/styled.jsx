@@ -29,8 +29,6 @@ export const Container = styled.div`
       display: flex;
       align-items: center;
       padding-left: 0.3rem;
-      
-      
     }
     .divider {
       margin-top: 2.5rem;
@@ -60,7 +58,7 @@ export const Container = styled.div`
     }
   }
 
-  @media (max-height: 590px) {
+  @media screen and (max-height: 590px) {
     margin-top: -15vh;
     form {
       height: 100vh;
@@ -71,7 +69,7 @@ export const Container = styled.div`
       }
     }
   }
-  @media (min-width: 820px) {
+  @media screen and (min-width: 820px) {
     margin: auto;
     height: 88vh;
     form {
@@ -126,17 +124,17 @@ export const Button = styled.button`
     transform: scale(0.95);
   }
 
-  @media (max-height: 440px) {
+  @media screen and (max-height: 440px) {
     width: 30%;
     height: 2rem;
     font-size: 0.7rem;
   }
-  @media (max-height: 600px) {
+  @media screen and (max-height: 600px) {
     width: 30%;
     height: 2rem;
     font-size: 0.7rem;
   }
-  @media (min-width: 820px) {
+  @media screen and (min-width: 820px) {
     font-weight: 400;
     width: 40%;
     height: 2.5rem;
@@ -158,7 +156,7 @@ export const Link = styled.a`
     cursor: pointer;
   }
 
-  @media (max-height: 600px) {
+  @media screen and (max-height: 600px) {
     font-size: 0.7rem;
   }
 `;

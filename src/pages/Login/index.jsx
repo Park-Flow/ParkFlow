@@ -1,15 +1,23 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import AlertContext from '../../contexts/AlertContext';
+import UserContext from '../../contexts/UserContext';
+import useSignin from '../../hooks/api/useSignIn';
 import park_flow_logo from '../../assets/images/park_flow_logo.png';
 import EmailIcon from '@mui/icons-material/Email';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import CustomizedSnackbars from '../../components/Alerts/index.jsx';
 
 import * as S from './styled';
 import Input from '../../components/Input';
 
 export default function Login() {
   const navigate = useNavigate();
+  const { signIn } = useSignin();
+  const { setUserData } = useContext(UserContext);
+  const { open, setOpen, message, setMessage, severity, setSeverity } =
+    useContext(AlertContext);
 
   const [values, setValues] = useState({
     email: '',
@@ -33,8 +41,22 @@ export default function Login() {
     event.preventDefault();
   };
 
-  const handleSubmit = event => {
+  const handleSubmit = async event => {
     event.preventDefault();
+    try {
+      const userData = await signIn(values.email, values.password);
+      setUserData(userData);
+      setMessage('Login realizado com sucesso!');
+      setSeverity('sucess');
+      navigate('/home');
+    } catch (err) {
+      console.log(err);
+      if (err.response.status === 401) setMessage('Invalid email or password');
+      else setMessage('internal error');
+      setSeverity('error');
+    } finally {
+      setOpen(true);
+    }
   };
 
   return (
@@ -106,6 +128,14 @@ export default function Login() {
           </div>
         )}
       </form>
+      {open ? (
+        <CustomizedSnackbars
+          open={open}
+          setOpen={setOpen}
+          message={message}
+          severity={severity}
+        />
+      ) : null}
     </S.Container>
   );
 }
