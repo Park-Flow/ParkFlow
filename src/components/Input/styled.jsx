@@ -61,7 +61,7 @@ export const InputControl = styled.div`
       border-radius: ${props => (props.$hireable ? '50%' : 'none')};
     }
   }
-  @media (max-height: 600px) {
+  @media screen and (max-height: 600px) {
     input {
       font-size: 0.7rem;
       &:focus ~ span,
@@ -76,7 +76,7 @@ export const InputControl = styled.div`
       font-size: 0.7rem;
     }
   }
-  @media (max-height: 440px) {
+  @media screen and (max-height: 440px) {
     margin-bottom: 20px;
     input {
       font-size: 0.6rem;
@@ -97,7 +97,7 @@ export const InputControl = styled.div`
       width: 1.8rem;
     }
   }
-  @media (min-width: 820px) {
+  @media screen and (min-width: 820px) {
    
     input{
       width: 25rem;

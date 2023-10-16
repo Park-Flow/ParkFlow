@@ -36,7 +36,6 @@ body {
   line-height: 1;
   font-family: 'Yantramanav', sans-serif;
   background-color: #161823;
-;
   color: #FAFAFA;
   width: 100vw;
   height: 100vh;

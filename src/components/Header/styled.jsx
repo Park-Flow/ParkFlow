@@ -11,4 +11,7 @@ export const Container = styled.div`
     width: 13rem;
     height: auto;
   }
+  @media screen and (max-width: 819px) {
+    display: none;
+  }
 `;
