@@ -46,8 +46,8 @@ export default function Login() {
     try {
       const userData = await signIn(values.email, values.password);
       setUserData(userData);
-      setMessage('Login realizado com sucesso!');
-      setSeverity('sucess');
+      setMessage('Login successfully!');
+      setSeverity('success');
       navigate('/home');
     } catch (err) {
       console.log(err);
