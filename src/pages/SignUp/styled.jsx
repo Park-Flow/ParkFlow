@@ -17,6 +17,7 @@ export const Container = styled.div`
     align-items: center;
     justify-content: center;
     img {
+      display: flex;
       width: 20rem;
       height: auto;
     }
@@ -26,7 +27,7 @@ export const Container = styled.div`
       margin-top: 1rem;
       margin-bottom: 2rem;
       height: 2.2rem;
-      display: flex;
+      display: none;
       align-items: center;
       padding-left: 0.3rem;
     }
@@ -37,7 +38,7 @@ export const Container = styled.div`
       width: 62%;
       height: 0.5rem;
       margin-bottom: 2rem;
-      display: flex;
+      display: none;
       justify-content: space-between;
       align-items: center;
       .line {
@@ -49,7 +50,7 @@ export const Container = styled.div`
     .signup-web {
       margin-top: -1rem;
       width: 62%;
-      display: flex;
+      display: none;
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
@@ -73,6 +74,14 @@ export const Container = styled.div`
     margin: auto;
     height: 88vh;
     form {
+      img{
+        display: none;
+      }
+      .text-desktop,
+      .signup-web,
+      .divider {
+        display: flex;
+      }
       height: 78vh;
       width: 40vw;
       margin-top: -2rem;
@@ -101,12 +110,6 @@ export const Button = styled.button`
       cursor: pointer;
       transform: scale(1.01);
     }
-  }
-
-  &:disabled {
-    background-color: #01111100;
-    color: #0fffff00;
-    cursor: not-allowed;
   }
 
   &:enabled:hover {
@@ -158,5 +161,8 @@ export const Link = styled.a`
 
   @media screen and (max-height: 600px) {
     font-size: 0.7rem;
+  }
+  @media (min-width: 820px) {
+    display: none;
   }
 `;

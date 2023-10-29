@@ -7,8 +7,8 @@ export const InputControl = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  width: /*unidade de medida responsiva*/ 60%;
-  height: /*unidade de medida responsiva*/ 2rem;
+  width: 60%;
+  height: 2rem;
   border-radius: 10px;
   margin-bottom: 40px;
   span {
@@ -29,7 +29,7 @@ export const InputControl = styled.div`
     font-size: 1rem;
     background-color: #1111110f;
     color: #fff;
-    border-bottom: 2px solid #fff;
+    border-bottom: ${props => props.$error? '2px solid #f63737' : '2px solid #fff'};
     transition: border-bottom 0.3s ease;
     &::placeholder {
       color: #fff;
@@ -37,14 +37,18 @@ export const InputControl = styled.div`
     }
     &:focus {
       outline: none;
-      border-bottom: 2px solid #3c78ee;
+      border-bottom: ${props => props.$error? '2px solid #ff0000' : '2px solid #3c78ee'};
     }
     &:focus ~ span,
     &:valid ~ span,
     &:not(:placeholder-shown) ~ span {
       transform: translateY(-30px);
       font-size: 12px;
-      color: #fff;
+      color: ${props => props.$error? '#f63737' : '#fff'};
+    }
+    &:disabled {
+      background-color: #11111139;
+      cursor: da+efault;
     }
   }
   svg {
@@ -52,9 +56,8 @@ export const InputControl = styled.div`
     position: relative;
     z-index: 1;
     padding: 5px;
-    width: /*unidade de medida responsiva*/ 2rem;
+    width: 2rem;
     height: auto;
-    /*caso tenha um onClick no svg, o cursor fica como pointer*/
     &:hover {
       cursor: ${props => (props.$hireable ? 'pointer' : 'default')};
       background-color: ${props => (props.$hireable ? '#1d1f2e' : 'none')};

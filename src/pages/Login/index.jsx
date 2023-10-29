@@ -25,11 +25,11 @@ export default function Login() {
     showPassword: false,
   });
 
-  const isdesktop = window.innerWidth > 820;
-
-  const REGEX_EMAIL = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+$/i;
+  const [error, setError] = useState(false);
+  const [disabled, setDisabled] = useState(false);
 
   const handleChange = prop => event => {
+    setError(false);
     setValues({ ...values, [prop]: event.target.value });
   };
 
@@ -44,6 +44,7 @@ export default function Login() {
   const handleSubmit = async event => {
     event.preventDefault();
     try {
+      setDisabled(true);
       const userData = await signIn(values.email, values.password);
       setUserData(userData);
       setMessage('Login successfully!');
@@ -52,29 +53,30 @@ export default function Login() {
     } catch (err) {
       console.log(err);
       if (err.response.status === 401) setMessage('Invalid email or password');
-      else setMessage('internal error');
+      else setMessage('internal server error');
       setSeverity('error');
+      setError(true);
     } finally {
       setOpen(true);
+      setDisabled(false);
     }
   };
 
   return (
     <S.Container>
       <form onSubmit={handleSubmit}>
-        {!isdesktop ? (
           <img src={park_flow_logo} alt="Park Flow Logo" />
-        ) : (
           <span className="text-desktop">
             Sign in with an registerd account
           </span>
-        )}
         <Input
           type={'email'}
           value={values.email}
           handleChange={handleChange('email')}
           hireable={false}
           typeSpan={'Email'}
+          error={error}
+          disabled={disabled}
         >
           <EmailIcon />
         </Input>
@@ -84,6 +86,8 @@ export default function Login() {
           handleChange={handleChange('password')}
           hireable={true}
           typeSpan={'Password'}
+          error={error}
+          disabled={disabled}
         >
           {values.showPassword ? (
             <VisibilityOff
@@ -100,33 +104,26 @@ export default function Login() {
 
         <S.Button
           type="submit"
-          disabled={
-            !REGEX_EMAIL.test(values.email) || values.password.length <= 6
-          }
+          disabled={disabled}
         >
           Login
         </S.Button>
-        {isdesktop ? (
           <div className="divider">
             <div className="line"></div>
             <span>or</span>
             <div className="line"></div>
           </div>
-        ) : (
-          <> </>
-        )}
-        {!isdesktop ? (
           <S.Link onClick={() => navigate('/signup')}>
             First time? Create an account!
           </S.Link>
-        ) : (
           <div className="signup-web">
             <span> First time? </span>
-            <S.Button className="signup" onClick={() => navigate('/signup')}>
+            <S.Button className="signup" 
+              onClick={() => navigate('/signup')} 
+              disabled={disabled}>
               Sign up
             </S.Button>
           </div>
-        )}
       </form>
       {open ? (
         <CustomizedSnackbars

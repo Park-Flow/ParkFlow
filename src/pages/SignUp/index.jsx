@@ -20,7 +20,7 @@ export default function SignUp() {
   const { setUserData } = useContext(UserContext);
   const { open, setOpen, message, setMessage, severity, setSeverity } =
     useContext(AlertContext);
-  const isdesktop = window.innerWidth > 820;
+
   const [values, setValues] = useState({
     name: '',
     email: '',
@@ -29,8 +29,6 @@ export default function SignUp() {
     showPassword: false,
     showConfirmPassword: false,
   });
-
-  const REGEX_EMAIL = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+$/i;
 
   const handleChange = prop => event => {
     setValues({ ...values, [prop]: event.target.value });
@@ -69,13 +67,10 @@ export default function SignUp() {
   return (
     <S.Container>
       <form onSubmit={handleSubmit}>
-        {!isdesktop ? (
           <img src={park_flow_logo} alt="Park Flow Logo" />
-        ) : (
           <span className="text-desktop">
             Sign in with an registerd account
           </span>
-        )}
         <Input
           type={'text'}
           value={values.name}
@@ -135,36 +130,23 @@ export default function SignUp() {
 
         <S.Button
           type="submit"
-          disabled={
-            values.password !== values.confirmPassword ||
-            values.name.length < 3 ||
-            !REGEX_EMAIL.test(values.email) ||
-            values.password.length <= 6
-          }
         >
           Create Account
         </S.Button>
-        {isdesktop ? (
           <div className="divider">
             <div className="line"></div>
             <span>or</span>
             <div className="line"></div>
           </div>
-        ) : (
-          <> </>
-        )}
-        {!isdesktop ? (
           <S.Link onClick={() => navigate('/')}>
             Already is registered? Sign In!
           </S.Link>
-        ) : (
           <div className="signup-web">
             <span> Already is registered? </span>
             <S.Button className="signup" onClick={() => navigate('/')}>
               Sign In
             </S.Button>
           </div>
-        )}
       </form>
       {open ? (
         <CustomizedSnackbars
