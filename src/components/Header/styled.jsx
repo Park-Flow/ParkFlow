@@ -84,5 +84,6 @@ export const Container = styled.div`
   }
   @media screen and (min-width: 820px) and (min-height: 650px) {
     display: flex;
+    position: relative;
   }
 `;
