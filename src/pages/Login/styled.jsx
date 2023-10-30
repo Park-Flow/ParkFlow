@@ -21,14 +21,21 @@ export const Container = styled.div`
       height: auto;
     }
     .text-desktop {
-      border-left: 3.5px solid #fff;
-      margin-left: -3.5rem;
-      margin-top: -2rem;
+      margin-top: 1rem;
       margin-bottom: 2rem;
-      height: 1.5rem;
+      width: 60%;
+      height: 2.2rem;
       display: none;
       align-items: center;
-      padding-left: 0.3rem;
+      justify-content: flex-start;
+      font-size: 1rem;
+      span {
+        border-left: 3.5px solid #fff;
+        height: 80%;
+        padding-left: 0.3rem;
+        display: flex;
+        align-items: center;
+      }
     }
     .divider {
       margin-top: 2.5rem;
@@ -68,12 +75,12 @@ export const Container = styled.div`
       }
     }
   }
-  @media (min-width: 820px) {
+  @media (min-width: 820px) and (min-height: 600px) {
     margin: auto;
     height: 88vh;
-   
+
     form {
-      img{
+      img {
         display: none;
       }
       .text-desktop,
@@ -110,9 +117,9 @@ export const Button = styled.button`
     }
   }
   &:disabled {
-      background-color: #111111e;
-      cursor: default;
-    }
+    background-color: #111111e;
+    cursor: default;
+  }
 
   &:enabled:hover {
     background-color: #fff;
@@ -134,7 +141,7 @@ export const Button = styled.button`
     height: 2rem;
     font-size: 0.7rem;
   }
-  @media (min-width: 820px) {
+  @media (min-width: 820px) and (min-height: 600px) {
     font-weight: 400;
     width: 50%;
     height: 2.5rem;
@@ -160,7 +167,7 @@ export const Link = styled.a`
     font-size: 0.7rem;
   }
 
-  @media (min-width: 820px) {
+  @media (min-width: 820px) and (min-height: 600px) {
     display: none;
   }
 `;

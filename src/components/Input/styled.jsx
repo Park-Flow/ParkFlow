@@ -13,7 +13,7 @@ export const InputControl = styled.div`
   margin-bottom: 40px;
   span {
     position: absolute;
-    left: 0.3125rem;
+    left: -1.125rem;
     top: -0.3125rem;
     line-height: 3.125rem;
     pointer-events: none;
@@ -26,10 +26,12 @@ export const InputControl = styled.div`
     height: 3.125rem;
     border: none;
     padding-left: 0.625rem;
+    padding-right: 2.225rem;
     font-size: 1rem;
     background-color: #1111110f;
     color: #fff;
-    border-bottom: ${props => props.$error? '2px solid #f63737' : '2px solid #fff'};
+    border-bottom: ${props =>
+      props.$error ? '2px solid #f63737' : '2px solid #fff'};
     transition: border-bottom 0.3s ease;
     &::placeholder {
       color: #fff;
@@ -37,24 +39,26 @@ export const InputControl = styled.div`
     }
     &:focus {
       outline: none;
-      border-bottom: ${props => props.$error? '2px solid #ff0000' : '2px solid #3c78ee'};
+      border-bottom: ${props =>
+        props.$error ? '2px solid #ff0000' : '2px solid #3c78ee'};
     }
     &:focus ~ span,
     &:valid ~ span,
     &:not(:placeholder-shown) ~ span {
       transform: translateY(-30px);
       font-size: 12px;
-      color: ${props => props.$error? '#f63737' : '#fff'};
+      color: ${props => (props.$error ? '#f63737' : '#fff')};
     }
     &:disabled {
       background-color: #11111139;
-      cursor: da+efault;
+      cursor: default;
     }
   }
   svg {
-    margin-left: -38px;
+    margin-left: -30px;
     position: relative;
     z-index: 1;
+    right: 0.5rem;
     padding: 5px;
     width: 2rem;
     height: auto;
@@ -100,9 +104,28 @@ export const InputControl = styled.div`
       width: 1.8rem;
     }
   }
-  @media screen and (min-width: 820px) {
-   
-    input{
-      width: 25rem;
+  @media screen and (min-width: 600px) {
+    input {
+      width: 20rem;
+      padding: 0.25rem;
     }
+    span {
+      left: 0.15rem;
+    }
+    svg {
+      right: -0.125rem;
+    }
+  }
+  @media screen and (min-width: 820px) and (min-height: 650px) {
+    input {
+      width: 25rem;
+      padding: 0.25rem;
+    }
+    span {
+      left: 0.15rem;
+    }
+    svg {
+      right: -0.125rem;
+    }
+  }
 `;

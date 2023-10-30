@@ -13,6 +13,7 @@ import CustomizedSnackbars from '../../components/Alerts/index.jsx';
 import park_flow_logo from '../../assets/images/park_flow_logo.png';
 import * as S from './styled';
 import Input from '../../components/Input';
+import Header from '../../components/Header';
 
 export default function SignUp() {
   const navigate = useNavigate();
@@ -49,14 +50,20 @@ export default function SignUp() {
   const handleSubmit = async event => {
     event.preventDefault();
     try {
-      const userData = await signUp(values.name, values.email, values.password, values.confirmPassword);
+      const userData = await signUp(
+        values.name,
+        values.email,
+        values.password,
+        values.confirmPassword,
+      );
       setUserData(userData);
       setMessage('User created successfully!');
       setSeverity('success');
       navigate('/');
     } catch (err) {
       if (err.response.status === 401) setMessage('Invalid email or password');
-      else if (err.response.status === 409) setMessage('Email is already registered in another account');
+      else if (err.response.status === 409)
+        setMessage('Email is already registered in another account');
       else setMessage('internal error');
       setSeverity('error');
     } finally {
@@ -65,74 +72,72 @@ export default function SignUp() {
   };
 
   return (
-    <S.Container>
-      <form onSubmit={handleSubmit}>
+    <>
+      <Header />
+      <S.Container>
+        <form onSubmit={handleSubmit}>
           <img src={park_flow_logo} alt="Park Flow Logo" />
-          <span className="text-desktop">
-            Sign in with an registerd account
-          </span>
-        <Input
-          type={'text'}
-          value={values.name}
-          handleChange={handleChange('name')}
-          hireable={false}
-          typeSpan={'Name'}
-        >
-          <BadgeIcon />
-        </Input>
-        <Input
-          type={'email'}
-          value={values.email}
-          handleChange={handleChange('email')}
-          hireable={false}
-          typeSpan={'Email'}
-        >
-          <EmailIcon />
-        </Input>
-        <Input
-          type={values.showPassword ? 'text' : 'password'}
-          value={values.password}
-          handleChange={handleChange('password')}
-          hireable={true}
-          typeSpan={'Password'}
-        >
-          {values.showPassword ? (
-            <VisibilityOff
-              onClick={handleClickShowPassword}
-              onMouseDown={handleMouseDownPassword}
-            />
-          ) : (
-            <Visibility
-              onClick={handleClickShowPassword}
-              onMouseDown={handleMouseDownPassword}
-            />
-          )}
-        </Input>
-        <Input
-          type={values.showConfirmPassword ? 'text' : 'password'}
-          value={values.confirmPassword}
-          handleChange={handleChange('confirmPassword')}
-          hireable={true}
-          typeSpan={'Confirm Password'}
-        >
-          {values.showConfirmPassword ? (
-            <VisibilityOff
-              onClick={handleClickShowConfirmPassword}
-              onMouseDown={handleMouseDownPassword}
-            />
-          ) : (
-            <Visibility
-              onClick={handleClickShowConfirmPassword}
-              onMouseDown={handleMouseDownPassword}
-            />
-          )}
-        </Input>
+          <div className="text-desktop">
+            <span>Sign in with an registerd account</span>
+          </div>
+          <Input
+            type={'text'}
+            value={values.name}
+            handleChange={handleChange('name')}
+            hireable={false}
+            typeSpan={'Name'}
+          >
+            <BadgeIcon />
+          </Input>
+          <Input
+            type={'email'}
+            value={values.email}
+            handleChange={handleChange('email')}
+            hireable={false}
+            typeSpan={'Email'}
+          >
+            <EmailIcon />
+          </Input>
+          <Input
+            type={values.showPassword ? 'text' : 'password'}
+            value={values.password}
+            handleChange={handleChange('password')}
+            hireable={true}
+            typeSpan={'Password'}
+          >
+            {values.showPassword ? (
+              <VisibilityOff
+                onClick={handleClickShowPassword}
+                onMouseDown={handleMouseDownPassword}
+              />
+            ) : (
+              <Visibility
+                onClick={handleClickShowPassword}
+                onMouseDown={handleMouseDownPassword}
+              />
+            )}
+          </Input>
+          <Input
+            type={values.showConfirmPassword ? 'text' : 'password'}
+            value={values.confirmPassword}
+            handleChange={handleChange('confirmPassword')}
+            hireable={true}
+            typeSpan={'Confirm Password'}
+          >
+            {values.showConfirmPassword ? (
+              <VisibilityOff
+                onClick={handleClickShowConfirmPassword}
+                onMouseDown={handleMouseDownPassword}
+              />
+            ) : (
+              <Visibility
+                onClick={handleClickShowConfirmPassword}
+                onMouseDown={handleMouseDownPassword}
+              />
+            )}
+          </Input>
 
-        <S.Button
-          type="submit"
-        >
-          Create Account
-        </S.Button>
+          <S.Button type="submit">Create Account</S.Button>
           <div className="divider">
             <div className="line"></div>
             <span>or</span>
@@ -147,15 +152,16 @@ export default function SignUp() {
               Sign In
             </S.Button>
           </div>
-      </form>
-      {open ? (
-        <CustomizedSnackbars
-          open={open}
-          setOpen={setOpen}
-          message={message}
-          severity={severity}
-        />
-      ) : null}
-    </S.Container>
+        </form>
+        {open ? (
+          <CustomizedSnackbars
+            open={open}
+            setOpen={setOpen}
+            message={message}
+            severity={severity}
+          />
+        ) : null}
+      </S.Container>
+    </>
   );
 }
