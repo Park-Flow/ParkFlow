@@ -4,7 +4,7 @@ import { UserProvider } from './contexts/UserContext';
 import { AlertProvider } from './contexts/AlertContext.jsx';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
-import Header from './components/Header';
+import Home from './pages/Home';
 
 function App() {
   return (
@@ -12,11 +12,11 @@ function App() {
       <AlertProvider>
         <UserProvider>
           <GlobalStyles />
-          <Header />
           <Router>
             <Routes>
               <Route path="/" element={<Login />} />
               <Route path="/signup" element={<SignUp />} />
+              <Route path="/home" element={<Home />} />
             </Routes>
           </Router>
         </UserProvider>

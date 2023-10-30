@@ -8,8 +8,8 @@ export default function Input({
   handleChange,
   hireable,
   typeSpan,
-  error=false,
-  disabled=false,
+  error = false,
+  disabled = false,
 }) {
   return (
     <S.InputControl $hireable={hireable} $error={error}>

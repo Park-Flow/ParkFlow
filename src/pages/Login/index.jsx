@@ -3,14 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import AlertContext from '../../contexts/AlertContext';
 import UserContext from '../../contexts/UserContext';
 import useSignin from '../../hooks/api/useSignIn';
-import park_flow_logo from '../../assets/images/park_flow_logo.png';
 import EmailIcon from '@mui/icons-material/Email';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import CustomizedSnackbars from '../../components/Alerts/index.jsx';
 
+import park_flow_logo from '../../assets/images/park_flow_logo.png';
 import * as S from './styled';
 import Input from '../../components/Input';
+import Header from '../../components/Header';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -63,51 +64,50 @@ export default function Login() {
   };
 
   return (
-    <S.Container>
-      <form onSubmit={handleSubmit}>
+    <>
+      <Header />
+      <S.Container>
+        <form onSubmit={handleSubmit}>
           <img src={park_flow_logo} alt="Park Flow Logo" />
-          <span className="text-desktop">
-            Sign in with an registerd account
-          </span>
-        <Input
-          type={'email'}
-          value={values.email}
-          handleChange={handleChange('email')}
-          hireable={false}
-          typeSpan={'Email'}
-          error={error}
-          disabled={disabled}
-        >
-          <EmailIcon />
-        </Input>
-        <Input
-          type={values.showPassword ? 'text' : 'password'}
-          value={values.password}
-          handleChange={handleChange('password')}
-          hireable={true}
-          typeSpan={'Password'}
-          error={error}
-          disabled={disabled}
-        >
-          {values.showPassword ? (
-            <VisibilityOff
-              onClick={handleClickShowPassword}
-              onMouseDown={handleMouseDownPassword}
-            />
-          ) : (
-            <Visibility
-              onClick={handleClickShowPassword}
-              onMouseDown={handleMouseDownPassword}
-            />
-          )}
-        </Input>
+          <div className="text-desktop">
+            <span>Sign in with an registerd account</span>
+          </div>
+          <Input
+            type={'email'}
+            value={values.email}
+            handleChange={handleChange('email')}
+            hireable={false}
+            typeSpan={'Email'}
+            error={error}
+            disabled={disabled}
+          >
+            <EmailIcon />
+          </Input>
+          <Input
+            type={values.showPassword ? 'text' : 'password'}
+            value={values.password}
+            handleChange={handleChange('password')}
+            hireable={true}
+            typeSpan={'Password'}
+            error={error}
+            disabled={disabled}
+          >
+            {values.showPassword ? (
+              <VisibilityOff
+                onClick={handleClickShowPassword}
+                onMouseDown={handleMouseDownPassword}
+              />
+            ) : (
+              <Visibility
+                onClick={handleClickShowPassword}
+                onMouseDown={handleMouseDownPassword}
+              />
+            )}
+          </Input>
 
-        <S.Button
-          type="submit"
-          disabled={disabled}
-        >
-          Login
-        </S.Button>
+          <S.Button type="submit" disabled={disabled}>
+            Login
+          </S.Button>
           <div className="divider">
             <div className="line"></div>
             <span>or</span>
@@ -118,21 +118,24 @@ export default function Login() {
           </S.Link>
           <div className="signup-web">
             <span> First time? </span>
-            <S.Button className="signup" 
-              onClick={() => navigate('/signup')} 
-              disabled={disabled}>
+            <S.Button
+              className="signup"
+              onClick={() => navigate('/signup')}
+              disabled={disabled}
+            >
               Sign up
             </S.Button>
           </div>
-      </form>
-      {open ? (
-        <CustomizedSnackbars
-          open={open}
-          setOpen={setOpen}
-          message={message}
-          severity={severity}
-        />
-      ) : null}
-    </S.Container>
+        </form>
+        {open ? (
+          <CustomizedSnackbars
+            open={open}
+            setOpen={setOpen}
+            message={message}
+            severity={severity}
+          />
+        ) : null}
+      </S.Container>
+    </>
   );
 }

@@ -17,19 +17,27 @@ export const Container = styled.div`
     align-items: center;
     justify-content: center;
     img {
+      flex-shrink: 2;
       display: flex;
       width: 20rem;
       height: auto;
     }
     .text-desktop {
-      border-left: 3.5px solid #fff;
-      margin-left: -9rem;
       margin-top: 1rem;
       margin-bottom: 2rem;
+      width: 60%;
       height: 2.2rem;
       display: none;
       align-items: center;
-      padding-left: 0.3rem;
+      justify-content: flex-start;
+      font-size: 1rem;
+      span {
+        border-left: 3.5px solid #fff;
+        height: 80%;
+        padding-left: 0.3rem;
+        display: flex;
+        align-items: center;
+      }
     }
     .divider {
       margin-top: 2.5rem;
@@ -70,11 +78,11 @@ export const Container = styled.div`
       }
     }
   }
-  @media screen and (min-width: 820px) {
+  @media screen and (min-width: 820px) and (min-height: 650px) {
     margin: auto;
     height: 88vh;
     form {
-      img{
+      img {
         display: none;
       }
       .text-desktop,
@@ -137,7 +145,10 @@ export const Button = styled.button`
     height: 2rem;
     font-size: 0.7rem;
   }
-  @media screen and (min-width: 820px) {
+  @media screen and (min-width: 300px) {
+    height: 2.5rem;
+  }
+  @media screen and (min-width: 820px) and (min-height: 650px) {
     font-weight: 400;
     width: 40%;
     height: 2.5rem;
@@ -162,7 +173,7 @@ export const Link = styled.a`
   @media screen and (max-height: 600px) {
     font-size: 0.7rem;
   }
-  @media (min-width: 820px) {
+  @media (min-width: 820px) and (min-height: 600px) {
     display: none;
   }
 `;
